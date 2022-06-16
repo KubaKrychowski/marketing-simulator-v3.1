@@ -1,0 +1,74 @@
+
+<nav class="ms-nav-bar-container">
+  <figure style="width: 30%">
+
+    <!-- <img src="../../assets/logos/MS.png"> -->
+    <span>
+      Marketing Simulator
+    </span>
+  </figure>
+  <ul class="ms-user-nav-bar-ul">
+    <li>
+      <div (click)="goToStartPage()" class="ms-user-nav-bar-element">
+        Start
+      </div>
+    </li>
+
+    <li>
+      <div (click)="goToStartPage()" class="ms-user-nav-bar-element">
+        Market
+      </div>
+    </li>
+
+    <li>
+      <div (click)="goToStartPage()" class="ms-user-nav-bar-element">
+        Storage
+      </div>
+    </li>
+
+    <li>
+      <div (click)="goToStartPage()" class="ms-user-nav-bar-element">
+        Production
+      </div>
+    </li>
+
+    <li>
+      <div (click)="goToStartPage()" class="ms-user-nav-bar-element">
+        Company
+      </div>
+    </li>
+
+    <li>
+      <div (click)="goToStartPage()" class="ms-user-nav-bar-element">
+        Community
+      </div>
+    </li>
+  </ul>
+  <ul class="ms-nav-bar-ul">
+    <li>
+      <div *ngIf="!userService.user?.IsLoggedIn" (click)="goToLogInPage()" class="ms-user-nav-bar-element ">
+        Log in
+      </div>
+    </li>
+
+    <li>
+      <div *ngIf="userService.user?.IsLoggedIn" (click)="goToLogOutPage()" class="ms-user-nav-bar-element ">
+        Log out
+      </div>
+    </li>
+
+    <li>
+      <div *ngIf="!userService.user?.IsLoggedIn" (click)="goToRegisterPage()" class="ms-nav-bar-element">
+        Create Account
+      </div>
+    </li>
+
+    <li>
+      <div (click)="goToUserProfileCreator()" class="ms-nav-bar-element">
+        Admin Panel
+      </div>
+    </li>
+  </ul>
+</nav>
+
+

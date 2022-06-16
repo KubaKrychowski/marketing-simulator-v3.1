@@ -1,0 +1,115 @@
+<div [class.on-loading]="loaderService.isLoading | async" class="log-in-container">
+  <div class="ms-loading-spinner" *ngIf="loaderService.isLoading | async">
+    <mat-spinner class="ms-spinner"></mat-spinner>
+  </div>
+
+  <div class="log-in-cart">
+    <div class="log-in-header">
+      <p class="header">
+        Create account
+      </p>
+    </div>
+
+    <div class="validation-errors">
+        <p class="error-message" *ngIf="!emailMatchValidator() && userRegisterForm.controls['confirmEmail'].touched">
+          <mat-icon>error_outline</mat-icon>
+          check if you correctly passed email adress
+        </p>
+
+        <p class="error-message" *ngIf="!passwordMatchValidator() && userRegisterForm.controls['confirmPassword'].touched">
+          <mat-icon>error_outline</mat-icon>
+          check if you correctly passed email adress
+        </p>
+    </div>
+    <div class="log-in-content">
+      <form [formGroup]="userRegisterForm" class="example-form" #form (ngSubmit)="sendForm()">
+        <div class="forms-row">
+          <div class="form-field">
+            <mat-form-field class="form-full-width" appearance="fill">
+              <mat-label>
+                Email
+              </mat-label>
+              <input formControlName="email" type="text" matInput placeholder="email">
+
+              <mat-error *ngIf="!userRegisterForm.controls['email'].hasError('email')">
+                Wrong email
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+
+          <mat-form-field class="form-full-width" appearance="fill">
+            <mat-label>
+              Confirm email
+            </mat-label>
+
+            <input formControlName="confirmEmail" type="text" matInput placeholder="email">
+
+            <mat-error *ngIf="!userRegisterForm.controls['confirmEmail'].hasError('confirmEmail')">
+              Wrong email
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="forms-row">
+          <mat-form-field class="form-full-width" appearance="fill">
+            <mat-label>
+              Password
+            </mat-label>
+            <input formControlName="password" type="password" matInput placeholder="password">
+
+            <mat-error *ngIf="!userRegisterForm.controls['password'].hasError('password')">
+              Wrong password
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="form-full-width" appearance="fill">
+            <mat-label>
+              Confirm password
+            </mat-label>
+            <input formControlName="confirmPassword" type="password" matInput placeholder="password">
+
+            <mat-error *ngIf="!userRegisterForm.controls['confirmPassword'].hasError('confirmPassword')">
+              Wrong password
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="forms-row">
+          <mat-form-field class="form-full-width" appearance="fill">
+            <mat-label>
+              Username
+            </mat-label>
+            <input formControlName="username" type="text" matInput placeholder="password">
+
+            <mat-error *ngIf="!userRegisterForm.controls['username'].hasError('username')">
+              Wrong username
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field style="padding: 0; align-self: flex-end;" appearance="fill">
+            <mat-label>Birthdate</mat-label>
+            <input formControlName="birthdate" placeholder="" matInput [matDatepicker]="picker">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+
+            <mat-error *ngIf="!userRegisterForm.controls['birthdate'].hasError('birtdate')">
+              Wrong date
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="forms-row">
+          <button
+            type="submit"
+            [disabled]="userRegisterForm.status === 'INVALID' || !emailMatchValidator() || !passwordMatchValidator()"
+            class="log-in-button"
+            mat-raised-button
+            color="primary">
+            Create account
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

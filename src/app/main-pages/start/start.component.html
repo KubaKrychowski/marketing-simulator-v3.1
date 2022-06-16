@@ -1,0 +1,289 @@
+<div class="ms-start-page-container">
+  <section class="ms-start-page-block">
+    <article>
+      <div class="user-summary" style="height: 60%;">
+        <div class="basic-informations">
+          <div class="col">
+            <div style=" width: 15%; height: 8em;">
+              <img width="100%"
+              height="100%"
+              src="https://cdn.pixabay.com/photo/2016/11/18/23/38/child-1837375__340.png">
+            </div>
+
+            <div class="headers" style=" ">
+              <strong>
+                {{user?.username}}
+              </strong>
+
+              <p>
+                Marketing Simulator v3
+              </p>
+
+              <p style="text-decoration: underline; color: black">
+                Global ranking position: #1
+              </p>
+
+              <p>
+                balance: 12345678$
+              </p>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="currencies-list">
+              <div class="ms-header">
+                <span class="content">
+                  currency rates
+                </span>
+
+                <mat-icon> attach_money</mat-icon>
+              </div>
+
+              <div class="content">
+                <ul class="ms-list">
+                  <li class="ms-list-header">
+                    Code
+                  </li>
+
+                  <li class="ms-list-cell">
+                    PLN
+                  </li>
+
+                  <li class="ms-list-cell">
+                    EURO
+                  </li>
+                </ul>
+
+                <ul class="ms-list">
+                  <li class="ms-list-header">
+                    Name
+                  </li>
+
+                  <li class="ms-list-cell">
+                    Polski Złoty
+                  </li>
+
+                  <li class="ms-list-cell">
+                    Euro
+                  </li>
+                </ul>
+
+                <ul class="ms-list">
+                  <li class="ms-list-header">
+                    Value
+                  </li>
+
+                  <li class="ms-list-cell">
+                    0.75$
+                  </li>
+
+                  <li class="ms-list-cell">
+                    1.75$
+                  </li>
+                </ul>
+
+                <ul class="ms-list">
+                  <li class="ms-list-header">
+                    Ratio
+                  </li>
+
+                  <li class="ms-list-cell">
+                    -0.24%
+                  </li>
+
+                  <li class="ms-list-cell">
+                    +1.12%
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div>
+              <div class="users-stocks">
+                <div class="ms-header">
+                  <span class="content">
+                    Your stocks
+                  </span>
+
+                  <mat-icon> attach_money</mat-icon>
+                </div>
+
+                <div class="content">
+                  <ul class="ms-list">
+                    <li class="ms-list-header">
+                      Code
+                    </li>
+
+                    <li class="ms-list-cell">
+                      JGC
+                    </li>
+
+                    <li class="ms-list-cell">
+                      WZF
+                    </li>
+                  </ul>
+
+                  <ul class="ms-list">
+                    <li class="ms-list-header">
+                      Value
+                    </li>
+
+                    <li class="ms-list-cell">
+                      0.75$
+                    </li>
+
+                    <li class="ms-list-cell">
+                      165.75$
+                    </li>
+                  </ul>
+
+                  <ul class="ms-list">
+                    <li class="ms-list-header">
+                      Ratio
+                    </li>
+
+                    <li class="ms-list-cell">
+                      -7.24%
+                    </li>
+
+                    <li class="ms-list-cell">
+                      +1.12%
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="charts">
+            <div class="chart" [class.chart-expanded]="isRankingChartVisible">
+              <div class="ms-header" (click)="showRankingChart()">
+                <span class="content">
+                  Ranking Chart
+                </span>
+
+                <mat-icon class="ms-action-icon">
+                  bar_chart
+                </mat-icon>
+              </div>
+
+              <div style="border: 1px solid rgb(250, 250, 250); height: 20em;"
+              class="chart-item">
+                <canvas id="myChart" style="  width:100% !important; margin-top: 2em;
+                height:auto !important;"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <hr>
+
+
+    <article class="informations">
+      <div class="transactions-container" style="width: 100%">
+        <div class="ms-header">
+          <span class="content">
+            Last Transactions
+          </span>
+          <mat-icon class="ms-action-icon">view_list</mat-icon>
+        </div>
+        <div class=" ms-list-container">
+          <ng-container *ngIf="dataSource.length; then transactionsList else emptyList">
+          </ng-container>
+        </div>
+      </div>
+
+      <div class="notifications-container">
+        <div class="ms-header">
+          <span class="content">
+            Todays events
+          </span>
+
+          <mat-icon>star</mat-icon>
+        </div>
+
+        <div class="notifications-content">
+          <div class="item">
+            <div class="hour">
+              10:00
+            </div>
+            <div class="vl">
+
+            </div>
+            <div class="event-informations">
+              <div class="title">
+                Simple event
+              </div>
+              <div class="description">
+                Simple description
+              </div>
+            </div>
+
+            <div class="favorite">
+              <mat-icon [class.favorite-true]="isFavorite" (click)="setAsFavorite()" >star_border</mat-icon>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+  </section>
+
+
+  <section style="width: 20%; height: 100%;">
+
+  </section>
+</div>
+
+<ng-template #transactionsList>
+  <ul class="ms-list">
+    <li class="ms-list-header">
+      id
+    </li>
+
+    <li class="ms-list-cell" *ngFor="let transaction of dataSource">
+      {{transaction.id}}
+    </li>
+  </ul>
+
+  <ul class="ms-list">
+    <li class="ms-list-header">
+      title
+    </li>
+
+    <li class="ms-list-cell" *ngFor="let transaction of dataSource">
+      {{transaction.title}}
+    </li>
+  </ul>
+
+  <ul class="ms-list">
+    <li class="ms-list-header">
+      type
+    </li>
+
+    <li class="ms-list-cell" *ngFor="let transaction of dataSource">
+      {{transaction.type}}
+    </li>
+  </ul>
+
+  <ul class="ms-list">
+    <li class="ms-list-header">
+      value
+    </li>
+
+    <li class="ms-list-cell" *ngFor="let transaction of dataSource">
+      {{transaction.value}}
+    </li>
+  </ul>
+</ng-template>
+
+<ng-template #emptyList>
+  <div class="no-transactions-message">
+    <p>
+      You have no transactions yet
+    </p>
+  </div>
+</ng-template>
