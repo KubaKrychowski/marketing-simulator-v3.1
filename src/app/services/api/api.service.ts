@@ -25,4 +25,12 @@ export class ApiService {
   setApiToken(token: string) {
     this.clientToken = token;
   }
+ // ! IT WOULDN'T WORK -> CHANGE PATH TO CONTROLLER ROUTE
+  checkIfNameIsAvailable(name: string){
+    return this.http.get<String>(`${API_URL}/${name}`);
+  }
+
+  checkIfEmailIsAvailable(email: string){
+    return this.http.post<String>(`${API_URL}/BusyNames/email/${email}`,null);
+  }
 }

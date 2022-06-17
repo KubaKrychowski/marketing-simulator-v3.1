@@ -39,9 +39,10 @@ export class LogInComponent implements OnInit {
       });
   }
 
-
   private resetForm() {
     this.emailFormControl.reset();
     this.passwordFormControl.reset();
   }
+
+
 }
