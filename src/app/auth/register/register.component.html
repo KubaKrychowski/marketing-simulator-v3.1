@@ -1,9 +1,9 @@
-<div [class.on-loading]="(loaderService.isLoading | async) && formIsSubmited" class="log-in-container">
+<section [class.on-loading]="(loaderService.isLoading | async) && formIsSubmited" class="log-in-container">
   <div class="ms-loading-spinner" *ngIf="(loaderService.isLoading | async) && formIsSubmited">
     <mat-spinner class="ms-spinner"></mat-spinner>
   </div>
 
-  <div class="log-in-cart">
+  <article class="log-in-cart">
     <div class="log-in-header">
       <p class="header">
         Create account
@@ -21,6 +21,7 @@
           check if you correctly passed email adress
         </p>
     </div>
+
     <div class="log-in-content">
       <form [formGroup]="userRegisterForm" class="example-form" #form (ngSubmit)="sendForm()">
         <div class="forms-row">
@@ -44,9 +45,9 @@
             <span class="ms-text-error" *ngIf="userRegisterForm.value.email && !isEmailUnique">
               Account already exist,
               <!-- TODO: href doesnt work, use router.navigate instead -->
-              <a href="localhost:4200/auth/log-in">
+              <span class="ms-link" (click)="goToLoginPage()">
                 log in here
-              </a>
+              </span>
             </span>
           </div>
 
@@ -127,5 +128,5 @@
         </div>
       </form>
     </div>
-  </div>
-</div>
+  </article>
+</section>
