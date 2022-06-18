@@ -1,24 +1,28 @@
 import { UserService } from './../../services/user/user.service';
 import { ApiService } from '../../services/api/api.service';
-import { Component, OnInit, enableProdMode } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { LoaderService } from '../../services/loader/loader.service'
 import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-log-in',
   templateUrl: './log-in.component.html',
   styleUrls: ['./log-in.component.sass']
 })
-export class LogInComponent implements OnInit {
+export class LogInComponent {
   submitedPasswordIsWrong = false;
+
   emailFormControl = new FormControl('', [Validators.required, Validators.email]);
   passwordFormControl = new FormControl('', [Validators.required, Validators.minLength(8)]);
-  constructor(private apiService: ApiService, private userService: UserService, public loaderService: LoaderService, private router: Router) { }
 
-  ngOnInit(): void {
-  }
+  constructor(
+    private apiService: ApiService,
+    private userService: UserService,
+    public loaderService: LoaderService,
+    private router: Router) { }
 
-  async sendForm() {
+  sendForm() {
     const userDto = {
       Email: this.emailFormControl.value,
       Password: this.passwordFormControl.value,
