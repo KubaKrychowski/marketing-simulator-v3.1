@@ -45,7 +45,7 @@ export class RegisterComponent {
       birthDate: this.userRegisterForm.controls['birthdate'].value
     };
 
-    this.apiService.sendPostRequest('Auth/register', userDto).subscribe(res => {
+    this.apiService.sendRegisterData('Auth/register', userDto).subscribe(res => {
       console.log('redirect to create data user');
       this.formIsSubmited = true;
     }, err => {

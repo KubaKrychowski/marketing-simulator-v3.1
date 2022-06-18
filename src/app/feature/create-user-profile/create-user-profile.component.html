@@ -9,14 +9,14 @@
   </div>
   <div class="ms-page-content">
     <article class="ms-article">
-      <form class="ms-form-container">
+      <form [formGroup]="companyCreatorFormGroup" (ngSubmit)="sendForm()" class="ms-form-container">
         <div class="ms-input-field">
           <label class="ms-input-label" for="companyName">
             Company Name
             <span class="ms-required-status">*</span>
           </label>
 
-          <input #companyNameInput [formControl]="companyNameFormControl" class="ms-input" type="text" id="companyName"
+          <input #companyNameInput formControlName="companyName" class="ms-input" type="text" id="companyName"
             on-focusout="checkIfNameIsAvailable()">
           <span class="ms-input-label ms-mt-1" *ngIf="loaderService.isLoading | async">
             Checking if name is available
@@ -24,6 +24,19 @@
             <div class="ms-loading-spinner">
               <mat-spinner [diameter]="20" class="ms-spinner"></mat-spinner>
             </div>
+          </span>
+
+          <span class="ms-mt-1" *ngIf="companyCreatorFormGroup.controls['companyName'].touched">
+            <span class="ms-input-label" *ngIf="companyNameIsUnique">
+              <mat-icon style="color: rgb(0, 172, 0)">done</mat-icon>
+
+              Your company name is free
+            </span>
+            <span class="ms-input-label" *ngIf="!companyNameIsUnique">
+              <mat-icon style="color: rgb(255, 217, 0)">warning</mat-icon>
+
+              This name is already taken
+            </span>
           </span>
         </div>
 
@@ -42,7 +55,7 @@
               <span class="ms-required-status">*</span>
             </label>
 
-            <input [formControl]="companyCountryFormControl" class="ms-input" type="text" id="company-adress">
+            <input formControlName="companyCountry" class="ms-input" type="text" id="company-adress">
           </div>
 
           <div class="ms-input-field">
@@ -51,7 +64,7 @@
               <span class="ms-required-status">*</span>
             </label>
 
-            <input [formControl]="companyCityFormControl" class="ms-input" type="text" id="company-adress">
+            <input formControlName="companyCity" class="ms-input" type="text" id="company-adress">
           </div>
 
           <div class="ms-input-field">
@@ -60,7 +73,7 @@
               <span class="ms-required-status">*</span>
             </label>
 
-            <input [formControl]="companyStreetFormControl" class="ms-input" type="text" id="company-adress">
+            <input formControlName="companyStreet" class="ms-input" type="text" id="company-adress">
           </div>
 
           <div class="ms-input-field">
@@ -73,7 +86,9 @@
           </div>
         </div>
 
-        <button class="log-in-button ms-mt-2">
+        <button type="submit" [disabled]="
+            companyCreatorFormGroup.status === 'INVALID' ||
+            !companyNameIsUnique" class="log-in-button ms-mt-2">
           Create company
         </button>
       </form>

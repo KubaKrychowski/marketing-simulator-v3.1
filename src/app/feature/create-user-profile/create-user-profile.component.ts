@@ -1,10 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { Loader } from "@googlemaps/js-api-loader";
 import { ComapnyOnMap } from 'src/app/shared/models/company-on-map.model';
 import { GeoCodingApiService } from 'src/app/services/geocoding-api/geocoding-api.service';
 import { LoaderService } from 'src/app/services/loader/loader.service';
 import { ApiService } from 'src/app/services/api/api.service';
+import { Router } from '@angular/router';
 
 const companyMap: Record<string, ComapnyOnMap> = {
   company1: {
@@ -23,21 +24,22 @@ const companyMap: Record<string, ComapnyOnMap> = {
   providers: [GeoCodingApiService]
 })
 export class CreateUserProfileComponent implements OnInit {
-  companyNameFormControl = new FormControl('', [Validators.required]);
-  companyCountryFormControl = new FormControl('', [Validators.required]);
-  companyCityFormControl = new FormControl('', [Validators.required]);
-  companyStreetFormControl = new FormControl('', [Validators.required]);
-  companyDescriptionFormControl = new FormControl('', [Validators.required]); 
-  constructor(private geoCodingApiService: GeoCodingApiService, public loaderService: LoaderService, private apiService: ApiService) { }
+  companyNameIsUnique = false;
+  companyAdress = null;
 
-  checkIfNameIsAvailable() {
-    //TODO: Write controller to check if in db name is free
-    this.apiService.checkIfNameIsAvailable(this.companyNameFormControl.value).subscribe(res => {
+  companyCreatorFormGroup = new FormGroup({
+    companyName: new FormControl('', [Validators.required]),
+    companyCountry: new FormControl('', [Validators.required]),
+    companyCity: new FormControl('', [Validators.required]),
+    companyStreet: new FormControl('', [Validators.required]),
+    //companyDescription: new FormControl('', [Validators.required]),
+  });
 
-    }, err => {
-      console.log(err);
-    })
-  };
+  constructor(
+    private geoCodingApiService: GeoCodingApiService,
+    public loaderService: LoaderService,
+     private apiService: ApiService,
+     private router: Router) { }
 
   ngOnInit(): void {
     let loader = new Loader({
@@ -416,6 +418,7 @@ export class CreateUserProfileComponent implements OnInit {
         this.geoCodingApiService.getAdressByCoordinates(latLng.lat, latLng.lng).subscribe(res => {
           console.log(res.results[0]);
           const adress = res.results[0].formatted_address.split(',');
+          this.companyAdress = adress;
           this.updateForm(adress[2], adress[1], adress[0]);
         });
 
@@ -424,10 +427,36 @@ export class CreateUserProfileComponent implements OnInit {
     });
   }
 
-  updateForm(country, city, street) {
-    this.companyCountryFormControl.setValue(country);
-    this.companyCityFormControl.setValue(city);
-    this.companyStreetFormControl.setValue(street);
+  checkIfNameIsAvailable() {
+    const name = this.companyCreatorFormGroup.get('companyName').value;
+    setTimeout(() => {
+      this.apiService.checkIfCompanyNameIsAvailable(name).subscribe(res => {
+        for (const [key, value] of Object.entries(res)) {
+          if (value === 'Name is free') {
+            this.companyNameIsUnique = true;
+          } else {
+            this.companyNameIsUnique = false;
+          }
+        }
+      }, err => {
+        console.log(err);
+      })
+    })
+  };
+
+  updateForm(country: string, city: string, street: string) {
+    console.log(this.companyCreatorFormGroup);
+    this.companyCreatorFormGroup.get('companyCountry')?.setValue(country);
+    this.companyCreatorFormGroup.get('companyCity')?.setValue(city);
+    this.companyCreatorFormGroup.get('companyStreet')?.setValue(street);
+  }
+
+  sendForm() {
+    this.apiService.sendPostRequest('Companies/create', this.companyCreatorFormGroup.value).subscribe(res => {
+      this.router.navigate(['/start'])
+    }, err => {
+      console.log(err);
+    })
   }
 }
 function getCustomRadiusForZoom(zoomLevel: number) {

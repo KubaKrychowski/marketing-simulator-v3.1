@@ -24,9 +24,8 @@ export class LogInComponent implements OnInit {
       Password: this.passwordFormControl.value,
     };
 
-    this.apiService.sendPostRequest('Auth/login', userDto)
+    this.apiService.sendLoginData('Auth/login', userDto)
       .subscribe((res) => {
-        console.log(res);
         for (const [key, value] of Object.entries(res)) {
           if (key === "token") {
             this.apiService.setApiToken(value);
@@ -43,6 +42,4 @@ export class LogInComponent implements OnInit {
     this.emailFormControl.reset();
     this.passwordFormControl.reset();
   }
-
-
 }
