@@ -12,6 +12,7 @@ import { LoaderService } from '../../services/loader/loader.service'
 export class RegisterComponent {
   picker: string | null = null;
   formIsSubmited: boolean = false;
+  isEmailUnique: boolean = true;
   emailConfirmed: boolean = false;
   passwordConfirmed: boolean = false;
 
@@ -44,10 +45,27 @@ export class RegisterComponent {
       birthDate: this.userRegisterForm.controls['birthdate'].value
     };
 
-    this.apiService.sendPostRequest('Auth/register', userDto).subscribe(res => {
+    this.apiService.sendRegisterData('Auth/register', userDto).subscribe(res => {
       console.log('redirect to create data user');
+      this.formIsSubmited = true;
     }, err => {
       console.log(err);
     })
   }
+
+  checkIfEmailIsAvailable() {
+    this.apiService.checkIfEmailIsAvailable(this.userRegisterForm.value.email).subscribe(res => {
+      for(const [key,value] of Object.entries(res)){
+        if(value === 'Account already exist'){
+          this.isEmailUnique = false;
+          console.log(value);
+        } else {
+          this.isEmailUnique = true;
+          console.log(value);
+        }
+      }
+    }, err => {
+      console.log(err);
+    })
+  };
 }

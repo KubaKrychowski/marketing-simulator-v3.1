@@ -1,5 +1,5 @@
-<div [class.on-loading]="loaderService.isLoading | async" class="log-in-container">
-  <div class="ms-loading-spinner" *ngIf="loaderService.isLoading | async">
+<div [class.on-loading]="(loaderService.isLoading | async) && formIsSubmited" class="log-in-container">
+  <div class="ms-loading-spinner" *ngIf="(loaderService.isLoading | async) && formIsSubmited">
     <mat-spinner class="ms-spinner"></mat-spinner>
   </div>
 
@@ -29,14 +29,26 @@
               <mat-label>
                 Email
               </mat-label>
-              <input formControlName="email" type="text" matInput placeholder="email">
+              <input
+               formControlName="email"
+               type="text"
+               matInput
+               placeholder="email"
+               on-focusout="checkIfEmailIsAvailable()">
 
               <mat-error *ngIf="!userRegisterForm.controls['email'].hasError('email')">
                 Wrong email
               </mat-error>
             </mat-form-field>
-          </div>
 
+            <span class="ms-text-error" *ngIf="userRegisterForm.value.email && !isEmailUnique">
+              Account already exist,
+              <!-- TODO: href doesnt work, use router.navigate instead -->
+              <a href="localhost:4200/auth/log-in">
+                log in here
+              </a>
+            </span>
+          </div>
 
           <mat-form-field class="form-full-width" appearance="fill">
             <mat-label>
@@ -102,7 +114,11 @@
         <div class="forms-row">
           <button
             type="submit"
-            [disabled]="userRegisterForm.status === 'INVALID' || !emailMatchValidator() || !passwordMatchValidator()"
+            [disabled]="
+              userRegisterForm.status === 'INVALID' ||
+              !emailMatchValidator() ||
+              !passwordMatchValidator() ||
+              !isEmailUnique"
             class="log-in-button"
             mat-raised-button
             color="primary">

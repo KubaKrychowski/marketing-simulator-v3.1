@@ -2,103 +2,108 @@
 
   <div class="header">
     <h2>
-      User Profile Creator
+      Company Profile Creator
     </h2>
 
     <hr>
   </div>
-<div class="ms-page-content">
-  <article class="ms-article">
-    <form class="ms-form-container">
-      <div class="ms-input-field">
-        <label class="ms-input-label" for="companyName">
-          Company Name
-          <span class="ms-required-status">*</span>
-        </label>
-
-        <input class="ms-input" type="text" id="companyName">
-      </div>
-
-      <div class="header ms-mt-2">
-        <h3>
-          Company Adress
-        </h3>
-
-        <hr>
-      </div>
-
-      <div class="ms-input-field-adress">
+  <div class="ms-page-content">
+    <article class="ms-article">
+      <form [formGroup]="companyCreatorFormGroup" (ngSubmit)="sendForm()" class="ms-form-container">
         <div class="ms-input-field">
-          <label class="ms-input-label" for="company-adress">
-            County
+          <label class="ms-input-label" for="companyName">
+            Company Name
             <span class="ms-required-status">*</span>
           </label>
 
-          <input class="ms-input" type="text" id="company-adress">
+          <input #companyNameInput formControlName="companyName" class="ms-input" type="text" id="companyName"
+            on-focusout="checkIfNameIsAvailable()">
+          <span class="ms-input-label ms-mt-1" *ngIf="loaderService.isLoading | async">
+            Checking if name is available
+
+            <div class="ms-loading-spinner">
+              <mat-spinner [diameter]="20" class="ms-spinner"></mat-spinner>
+            </div>
+          </span>
+
+          <span class="ms-mt-1" *ngIf="companyCreatorFormGroup.controls['companyName'].touched">
+            <span class="ms-input-label" *ngIf="companyNameIsUnique">
+              <mat-icon style="color: rgb(0, 172, 0)">done</mat-icon>
+
+              Your company name is free
+            </span>
+            <span class="ms-input-label" *ngIf="!companyNameIsUnique">
+              <mat-icon style="color: rgb(255, 217, 0)">warning</mat-icon>
+
+              This name is already taken
+            </span>
+          </span>
         </div>
 
-        <div class="ms-input-field">
-          <label class="ms-input-label" for="company-adress">
-            City
-            <span class="ms-required-status">*</span>
-          </label>
+        <div class="header ms-mt-2">
+          <h3>
+            Company Adress
+          </h3>
 
-          <input class="ms-input" type="text" id="company-adress">
+          <hr>
         </div>
 
-        <div class="ms-input-field">
-          <label class="ms-input-label" for="company-adress">
-            Street
-            <span class="ms-required-status">*</span>
-          </label>
+        <div class="ms-input-field-adress">
+          <div class="ms-input-field">
+            <label class="ms-input-label" for="company-adress">
+              County
+              <span class="ms-required-status">*</span>
+            </label>
 
-          <input class="ms-input" type="text" id="company-adress">
+            <input formControlName="companyCountry" class="ms-input" type="text" id="company-adress">
+          </div>
+
+          <div class="ms-input-field">
+            <label class="ms-input-label" for="company-adress">
+              City
+              <span class="ms-required-status">*</span>
+            </label>
+
+            <input formControlName="companyCity" class="ms-input" type="text" id="company-adress">
+          </div>
+
+          <div class="ms-input-field">
+            <label class="ms-input-label" for="company-adress">
+              Street
+              <span class="ms-required-status">*</span>
+            </label>
+
+            <input formControlName="companyStreet" class="ms-input" type="text" id="company-adress">
+          </div>
+
+          <div class="ms-input-field">
+            <label class="ms-input-label" for="company-adress">
+              House number
+              <span class="ms-required-status">*</span>
+            </label>
+
+            <input class="ms-input" type="text" id="company-adress">
+          </div>
         </div>
 
-        <div class="ms-input-field">
-          <label class="ms-input-label" for="company-adress">
-            House number
-            <span class="ms-required-status">*</span>
-          </label>
-
-          <input class="ms-input" type="text" id="company-adress">
-        </div>
-      </div>
-
-      <div class="header ms-mt-2">
-        <h3>
-          Company Members
-        </h3>
-
-        <hr>
-      </div>
-
-      <div class="ms-search-field">
-        <div class="ms-input-field">
-          <label class="ms-input-label" for="company-adress">
-            Search player by username
-            <span class="ms-required-status">*</span>
-          </label>
-
-          <input class="ms-input" type="text" id="company-adress">
-        </div>
-
-        <button class="ms-search-button">
-          <mat-icon>
-            search
-          </mat-icon>
-
-          Search
+        <button type="submit" [disabled]="
+            companyCreatorFormGroup.status === 'INVALID' ||
+            !companyNameIsUnique" class="log-in-button ms-mt-2">
+          Create company
         </button>
+      </form>
+    </article>
+    <article class="ms article">
+      <div class="header">
+        <h3>
+          Select localization for your company
+        </h3>
+
+        <hr>
       </div>
 
-    </form>
-  </article>
-  <article class="ms article">
-    <div class="full" id="map">
-
-    </div>
-  </article>
-</div>
+      <div class="full" id="map"></div>
+    </article>
+  </div>
 
 </section>
