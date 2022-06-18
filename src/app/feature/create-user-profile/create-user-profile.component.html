@@ -5,19 +5,11 @@
       Company Profile Creator
     </h2>
 
-    <hr class="ms-hr">
+    <hr>
   </div>
   <div class="ms-page-content">
-    <article class="ms-article ms-py-0">
-      <div class="header">
-        <h3>
-          Basic informations
-        </h3>
-      </div>
-
-      <hr>
-
-      <form [formGroup]="companyCreatorFormGroup" (ngSubmit)="sendForm()" class="ms-form-container ms-mt-1">
+    <article class="ms-article">
+      <form [formGroup]="companyCreatorFormGroup" (ngSubmit)="sendForm()" class="ms-form-container">
         <div class="ms-input-field">
           <label class="ms-input-label" for="companyName">
             Company Name
@@ -25,7 +17,7 @@
           </label>
 
           <input #companyNameInput formControlName="companyName" class="ms-input" type="text" id="companyName"
-            on-focusout="checkIfCompanyNameIsAvailable()">
+            on-focusout="checkIfNameIsAvailable()">
           <span class="ms-input-label ms-mt-1" *ngIf="loaderService.isLoading | async">
             Checking if name is available
 
@@ -48,7 +40,7 @@
           </span>
         </div>
 
-        <div class="header ms-mt-1">
+        <div class="header ms-mt-2">
           <h3>
             Company Adress
           </h3>
@@ -75,7 +67,7 @@
             <input formControlName="companyCity" class="ms-input" type="text" id="company-adress">
           </div>
 
-          <div class="ms-input-field ms-mt-1">
+          <div class="ms-input-field">
             <label class="ms-input-label" for="company-adress">
               Street
               <span class="ms-required-status">*</span>
@@ -84,7 +76,7 @@
             <input formControlName="companyStreet" class="ms-input" type="text" id="company-adress">
           </div>
 
-          <div class="ms-input-field ms-mt-1">
+          <div class="ms-input-field">
             <label class="ms-input-label" for="company-adress">
               House number
               <span class="ms-required-status">*</span>
@@ -96,25 +88,22 @@
 
         <button type="submit" [disabled]="
             companyCreatorFormGroup.status === 'INVALID' ||
-            !companyNameIsUnique"
-             [class]="
-              (companyCreatorFormGroup.status === 'INVALID' ||!companyNameIsUnique)?
-                'ms-mt-2 create-company-button-disabled' :
-                'log-in-button ms-mt-2'">
+            !companyNameIsUnique" class="log-in-button ms-mt-2">
           Create company
         </button>
       </form>
     </article>
-    <article class="ms-article ms-py-0">
+    <article class="ms article">
       <div class="header">
         <h3>
           Select localization for your company
         </h3>
-      </div>
 
-      <hr>
+        <hr>
+      </div>
 
       <div class="full" id="map"></div>
     </article>
   </div>
+
 </section>

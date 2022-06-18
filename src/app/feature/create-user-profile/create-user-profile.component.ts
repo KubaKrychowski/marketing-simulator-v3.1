@@ -6,7 +6,6 @@ import { GeoCodingApiService } from 'src/app/services/geocoding-api/geocoding-ap
 import { LoaderService } from 'src/app/services/loader/loader.service';
 import { ApiService } from 'src/app/services/api/api.service';
 import { Router } from '@angular/router';
-import { UniqueNamesService } from 'src/app/services/unique-names/unique-names.service';
 
 const companyMap: Record<string, ComapnyOnMap> = {
   company1: {
@@ -33,14 +32,14 @@ export class CreateUserProfileComponent implements OnInit {
     companyCountry: new FormControl('', [Validators.required]),
     companyCity: new FormControl('', [Validators.required]),
     companyStreet: new FormControl('', [Validators.required]),
+    //companyDescription: new FormControl('', [Validators.required]),
   });
 
   constructor(
     private geoCodingApiService: GeoCodingApiService,
     public loaderService: LoaderService,
-    private apiService: ApiService,
-    private uniqueNamesService: UniqueNamesService,
-    private router: Router) { }
+     private apiService: ApiService,
+     private router: Router) { }
 
   ngOnInit(): void {
     let loader = new Loader({
@@ -422,27 +421,31 @@ export class CreateUserProfileComponent implements OnInit {
           this.companyAdress = adress;
           this.updateForm(adress[2], adress[1], adress[0]);
         });
+
+
       });
     });
   }
 
-  checkIfCompanyNameIsAvailable() {
+  checkIfNameIsAvailable() {
     const name = this.companyCreatorFormGroup.get('companyName').value;
-
-    this.uniqueNamesService.checkIfCompanyNameIsAvailable(name).subscribe(res => {
-      for (const [key, value] of Object.entries(res)) {
-        if (value === 'Name is free') {
-          this.companyNameIsUnique = true;
-        } else {
-          this.companyNameIsUnique = false;
+    setTimeout(() => {
+      this.apiService.checkIfCompanyNameIsAvailable(name).subscribe(res => {
+        for (const [key, value] of Object.entries(res)) {
+          if (value === 'Name is free') {
+            this.companyNameIsUnique = true;
+          } else {
+            this.companyNameIsUnique = false;
+          }
         }
-      }
-    }, err => {
-      console.log(err);
+      }, err => {
+        console.log(err);
+      })
     })
   };
 
   updateForm(country: string, city: string, street: string) {
+    console.log(this.companyCreatorFormGroup);
     this.companyCreatorFormGroup.get('companyCountry')?.setValue(country);
     this.companyCreatorFormGroup.get('companyCity')?.setValue(city);
     this.companyCreatorFormGroup.get('companyStreet')?.setValue(street);
@@ -456,11 +459,9 @@ export class CreateUserProfileComponent implements OnInit {
     })
   }
 }
-
 function getCustomRadiusForZoom(zoomLevel: number) {
-  console.log(zoomLevel);
   if (zoomLevel >= 10) {
-    return 1000 / (zoomLevel / 6);
+    return 1000;
   }
   else if (zoomLevel === 9) {
     return 3000;

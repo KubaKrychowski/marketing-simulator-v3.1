@@ -1,9 +1,9 @@
-<section [class.on-logging]="loaderService.isLoading | async" class="log-in-container">
+<div [class.on-logging]="loaderService.isLoading | async" class="log-in-container">
   <div class="ms-loading-spinner" *ngIf="loaderService.isLoading | async">
     <mat-spinner class="ms-spinner"></mat-spinner>
   </div>
 
-  <article class="log-in-cart">
+  <div class="log-in-cart">
     <div class="log-in-header">
       <p class="header">
         Log in
@@ -16,7 +16,7 @@
           <mat-label>
             Email
           </mat-label>
-          <input class="ms-mat-input-color" type="text" matInput [formControl]="emailFormControl" placeholder="email">
+          <input type="text" matInput [formControl]="emailFormControl" placeholder="email">
           <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
             Please enter a email
           </mat-error>
@@ -34,7 +34,7 @@
           <mat-label>
             Password
           </mat-label>
-          <input class="ms-mat-input-color" type="password" matInput [formControl]="passwordFormControl" placeholder="password">
+          <input type="text" matInput [formControl]="passwordFormControl" placeholder="password">
 
           <mat-error *ngIf="passwordFormControl.hasError('email') && !passwordFormControl.hasError('required')">
             Please enter a valid password
@@ -48,14 +48,10 @@
           </mat-error>
         </mat-form-field>
 
-        <button
-         type="submit"
-         [disabled]="!emailFormControl.valid || !passwordFormControl.valid"
-         class="log-in-button ms-mt-1"
-         mat-raised-button color="primary">
-          Log in
-        </button>
+        <button type="submit" [disabled]="!emailFormControl.valid || !passwordFormControl.valid" class="log-in-button" mat-raised-button color="primary">Log in</button>
       </form>
+
+
     </div>
-  </article>
-</section>
+  </div>
+</div>
