@@ -1,0 +1,24 @@
+<div class="ms-dialog-container" mat-dialog-content>
+  <h1 mat-dialog-title>
+    Success
+  </h1>
+
+  <hr>
+  <div class="ms-dialog-content">
+    <img src="../../../../assets/pictures/ms-success-icon.png">
+
+    <p class="ms-dialog-message">
+      Your account has been created successfully
+    </p>
+  </div>
+
+  <div mat-dialog-actions class="ms-dialog-buttons">
+    <button class="ms-button-success" (click)="goToCompanyProfileCreator()" mat-button mat-dialog-close>
+      Go to company profile creator
+    </button>
+
+    <button class="ms-button-danger" (click)="goToHomePage()" mat-button mat-dialog-close cdkFocusInitial>
+      Later
+    </button>
+  </div>
+</div>
