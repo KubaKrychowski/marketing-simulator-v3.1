@@ -5,6 +5,8 @@ import { ApiService } from 'src/app/services/api/api.service';
 import { User } from 'src/app/shared/models/user.model';
 import { LoaderService } from '../../services/loader/loader.service';
 import { UniqueNamesService } from 'src/app/services/unique-names/unique-names.service';
+import { MatDialog } from '@angular/material/dialog';
+import { RegisterSuccessDialogComponent } from 'src/app/feature/notifications/register-success-dialog/register-success-dialog.component';
 
 @Component({
   selector: 'app-register',
@@ -22,6 +24,7 @@ export class RegisterComponent {
 
   constructor(
     public loaderService: LoaderService,
+    public dialog: MatDialog,
     private apiService: ApiService,
     private uniqueNamesService: UniqueNamesService,
     private router: Router) {
@@ -57,10 +60,11 @@ export class RegisterComponent {
 
     this.apiService.sendRegisterData('Auth/register', userDto).subscribe(res => {
       this.formIsSubmited = true;
-      this.router.navigate(['/start/create-user-profile']);
     }, err => {
       console.log(err);
-    })
+    });
+
+    this.openDialog();
   }
 
   checkIfEmailIsAvailable() {
@@ -79,5 +83,12 @@ export class RegisterComponent {
 
   goToLoginPage() {
     this.router.navigate(['/auth/log-in']);
+  }
+
+  openDialog(): void {
+    this.dialog.open(RegisterSuccessDialogComponent, {
+      width: '50vw',
+      height: '50vh',
+    });
   }
 }
