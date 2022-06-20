@@ -33,6 +33,7 @@ export class CreateUserProfileComponent implements OnInit {
     companyCountry: new FormControl('', [Validators.required]),
     companyCity: new FormControl('', [Validators.required]),
     companyStreet: new FormControl('', [Validators.required]),
+    houseNumber: new FormControl('', [Validators.required]),
   });
 
   constructor(

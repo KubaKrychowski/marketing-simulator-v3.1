@@ -1,0 +1,31 @@
+@keyframes float-left
+  0%
+    margin-right: -50em
+  100%
+    margin-right: 0em
+
+.ms-alert
+  padding: 1em 0.5em
+  background-color: #c43232
+  trans
+  color: white
+  width: 17vw
+  animation-name: float-left
+  animation-duration: 1s
+  transition: margin-left 1s
+
+.ms-alert-content
+  display: flex
+  flex-direction: row
+  column-gap: 1em
+  align-items: center
+  justify-items: center
+
+  h3
+    margin: 0 !important
+  mat-icon
+    margin: 0
+  .close-icon
+    margin-left: auto
+    &:hover
+      cursor: pointer
