@@ -20,6 +20,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NotificationsModule } from './feature/notifications/notifications.module';
+import { MarketModule } from './feature/market/market/market.module';
+import { MarketSearchResultsItemComponent } from './feature/market/components/market-search-results-item/market-search-results-item.component';
 
 @NgModule({
   imports: [
@@ -31,7 +33,8 @@ import { NotificationsModule } from './feature/notifications/notifications.modul
     ReactiveFormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    NotificationsModule
+    NotificationsModule,
+    MarketModule
   ],
 
   declarations: [
@@ -43,6 +46,7 @@ import { NotificationsModule } from './feature/notifications/notifications.modul
     RegisterComponent,
     CreateUserProfileComponent,
     NavBarComponent,
+    MarketSearchResultsItemComponent,
   ],
 
   bootstrap: [AppComponent],

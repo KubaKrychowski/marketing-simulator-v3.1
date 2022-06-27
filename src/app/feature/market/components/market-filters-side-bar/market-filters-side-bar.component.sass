@@ -1,0 +1,38 @@
+@use '../../../../../styles' as var
+.search-filters-container
+  font-size: 18px
+  background-color: #ececec
+  padding: 1em 0em
+  border-radius: 8px
+
+.search-filters-header
+  padding: 0 0.5em
+
+.search-filters-options
+  color: var.$gray-text-color
+  height: 100%
+
+  .search-filters-option
+    display: flex
+    flex-direction: column
+
+    .search-inputs-container
+      display: flex
+      flex-direction: row
+      column-gap: 1em
+      .ms-input
+        border: 1px solid gray
+        color: gray
+        padding: 1%
+        height: 1.5em
+        width: 45%
+        border-radius: 4px
+
+    .search-radio-inputs-container
+      display: flex
+      flex-direction: column
+      justify-content: center
+
+.search-filters-buttons-container
+  display: flex
+  flex-direction: row

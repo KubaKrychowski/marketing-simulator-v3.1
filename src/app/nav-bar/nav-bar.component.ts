@@ -33,6 +33,10 @@ export class NavBarComponent implements OnInit {
   goToRegisterPage(): void {
     this.router.navigate(['/auth/register']);
   }
+
+  goToMarketPage(): void {
+    this.router.navigate(['/market/results']);
+  }
 }
 
 
