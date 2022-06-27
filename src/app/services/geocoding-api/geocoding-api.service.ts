@@ -13,7 +13,7 @@ export class GeoCodingApiService {
   getAdressByCoordinates(lat: number, lng: number) {
     const params = new HttpParams()
       .set('latlng', `${lat}, ${lng}`)
-      .append('key', 'AIzaSyCYqXihdiQaWiw7BIgvpdu4seFMGGJz_Qw');
+      .append('key', '');
 
     return this.http.get<any>(`${API_URL}`, { params: params });
   }
