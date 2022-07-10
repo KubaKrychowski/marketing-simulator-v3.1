@@ -27,7 +27,7 @@ export class LogInComponent {
       Email: this.emailFormControl.value,
       Password: this.passwordFormControl.value,
     };
-
+    //TODO: Remove deprecation
     this.apiService.sendLoginData('Auth/login', userDto)
       .subscribe((res) => {
         for (const [key, value] of Object.entries(res)) {
