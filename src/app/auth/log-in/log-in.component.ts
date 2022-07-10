@@ -32,7 +32,7 @@ export class LogInComponent {
       .subscribe((res) => {
         for (const [key, value] of Object.entries(res)) {
           if (key === "token") {
-            this.apiService.setApiToken(value);
+            this.apiService.setClientToken(value);
             this.userService.initializeUser(this.emailFormControl.value);
             this.router.navigate(['/start']);
           }

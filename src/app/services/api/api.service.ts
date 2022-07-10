@@ -44,7 +44,7 @@ export class ApiService {
     });
   }
 
-  setApiToken(token: string) {
+  setClientToken(token: string) {
     this.clientToken = token;
   }
 }

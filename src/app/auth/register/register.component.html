@@ -44,7 +44,6 @@
 
             <span class="ms-text-error" *ngIf="userRegisterForm.value.email && !isEmailUnique">
               Account already exist,
-              <!-- TODO: href doesnt work, use router.navigate instead -->
               <span class="ms-link" (click)="goToLoginPage()">
                 log in here
               </span>

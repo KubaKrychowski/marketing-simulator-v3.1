@@ -68,6 +68,7 @@ export class DialogOverviewExampleDialog {
   }
 
   updateUserData() {
+    //TODO: End this feature
     if(this.newExternalId.valid && this.newEmail.valid && this.newBalance.valid){
       const userDto: User = {
         externalId: this.newExternalId.value,

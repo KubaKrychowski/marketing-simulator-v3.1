@@ -16,7 +16,6 @@
           <article class="basic-informations ms-mt-2">
             <div class="user-data">
               <span class="user-data-title"> Username: </span>
-              <!-- TODO: Rework it as reactive form -->
               <input
                 class="ms-input"
                 *ngIf="editMode"
@@ -28,7 +27,12 @@
 
             <div class="user-data">
               <span class="user-data-title">Email:</span>
-              <input formControlName="newEmail" class="ms-input" *ngIf="editMode" [value]="user.email" />
+              <input
+                formControlName="newEmail"
+                class="ms-input"
+                *ngIf="editMode"
+                [value]="user.email"
+              />
               <p *ngIf="!editMode">{{user.email}}</p>
             </div>
 
@@ -45,7 +49,12 @@
 
             <div class="user-data">
               <span class="user-data-title">Money:</span>
-              <input formControlName="newBalance" class="ms-input" *ngIf="editMode" [value]="" />
+              <input
+                formControlName="newBalance"
+                class="ms-input"
+                *ngIf="editMode"
+                [value]=""
+              />
               <p>
                 <span *ngIf="!editMode">XXXXXXXXXXXX </span>
               </p>
@@ -56,7 +65,12 @@
           <div class="buttons-container">
             <button class="ms-button-danger">Cancel</button>
 
-            <button (click)="updateUserData()" class="ms-button-success ms-ml-1">Save Changes</button>
+            <button
+              (click)="updateUserData()"
+              class="ms-button-success ms-ml-1"
+            >
+              Save Changes
+            </button>
           </div>
         </mat-tab>
         <mat-tab label="Company details"> </mat-tab>
