@@ -1,0 +1,76 @@
+.user-informations
+  display: flex
+  flex-direction: row
+  align-items: center
+  column-gap: 5%
+  width: 100%
+
+  .category-id
+    width: 10%
+  .category-username
+    width: 20%
+  .category-email
+    width: 30%
+
+  .menu-icon
+    margin-left: auto
+
+    &:hover
+      cursor: pointer
+
+//! Dialog
+
+.dialog-container
+  padding: 1em
+
+  .dialog-header-container
+    display: flex
+    flex-direction: row
+    align-items: center
+
+  .dialog-header
+    margin-top: 5px
+    margin-bottom: 0
+
+  .basic-informations
+    display: flex
+    flex-direction: row
+    flex-wrap: wrap
+    justify-content: space-between
+
+  .user-data
+    padding: 2em
+    display: flex
+    font-size: 13px
+    flex-direction: column
+    flex-wrap: wrap
+
+    .user-data-title
+      color: #707070
+      font-size: 12px
+
+  .edit-user-menu
+    font-size: 18px
+    margin-left: auto
+    color: #707070
+
+    &:hover
+      cursor: pointer
+      color: #868686
+.buttons-container
+  text-align: right
+
+  .button
+    margin-left: 1em
+    border-radius: 10px
+    padding: 0.5em
+    color: #ffff
+    border: 0
+
+    &:hover
+      cursor: pointer
+
+    .save
+      background-color: #a062ba
+    .cancel
+      background-color: rgb(245, 59, 59)

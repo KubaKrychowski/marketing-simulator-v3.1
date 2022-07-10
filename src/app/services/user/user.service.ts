@@ -26,4 +26,8 @@ export class UserService {
     this.user = null;
     //TODO: add log out user
   }
+
+  updateUserData(user: User){
+    return this.apiService.sendPatchRequest(``,user);
+  }
 }

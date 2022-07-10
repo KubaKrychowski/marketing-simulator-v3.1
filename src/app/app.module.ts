@@ -21,7 +21,11 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NotificationsModule } from './feature/notifications/notifications.module';
 import { MarketModule } from './feature/market/market/market.module';
-import { MarketSearchResultsItemComponent } from './feature/market/components/market-search-results-item/market-search-results-item.component';
+import { AdminPanelComponent } from './main-pages/admin-panel/admin-panel.component';
+import { UsersManagementComponent } from './main-pages/admin-panel/users-management/users-management.component';
+import { CompaniesManagementComponent } from './main-pages/admin-panel/companies-management/companies-management.component';
+import { MarketManagementComponent } from './main-pages/admin-panel/market-management/market-management.component';
+import { UsersManagementUserItemComponent, DialogOverviewExampleDialog } from './main-pages/admin-panel/users-management/users-management-user-item/users-management-user-item.component';
 
 @NgModule({
   imports: [
@@ -46,7 +50,12 @@ import { MarketSearchResultsItemComponent } from './feature/market/components/ma
     RegisterComponent,
     CreateUserProfileComponent,
     NavBarComponent,
-    MarketSearchResultsItemComponent,
+    AdminPanelComponent,
+    UsersManagementComponent,
+    CompaniesManagementComponent,
+    MarketManagementComponent,
+    UsersManagementUserItemComponent,
+    DialogOverviewExampleDialog
   ],
 
   bootstrap: [AppComponent],

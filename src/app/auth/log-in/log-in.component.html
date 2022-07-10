@@ -1,58 +1,76 @@
-<section [class.on-logging]="loaderService.isLoading | async" class="log-in-container">
+<section
+  [class.on-logging]="loaderService.isLoading | async"
+  class="log-in-container"
+>
   <div class="ms-loading-spinner" *ngIf="loaderService.isLoading | async">
     <mat-spinner class="ms-spinner"></mat-spinner>
   </div>
 
   <article class="log-in-cart">
     <div class="log-in-header">
-      <p class="header">
-        Log in
-      </p>
+      <p class="header">Log in</p>
     </div>
 
     <div class="log-in-content">
       <form class="example-form" #form (ngSubmit)="sendForm()">
         <mat-form-field class="form-full-width" appearance="fill">
-          <mat-label>
-            Email
-          </mat-label>
-          <input class="ms-mat-input-color" type="text" matInput [formControl]="emailFormControl" placeholder="email">
-          <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+          <mat-label> Email </mat-label>
+          <input
+            class="ms-mat-input-color"
+            type="text"
+            matInput
+            [formControl]="emailFormControl"
+            placeholder="email"
+          />
+          <mat-error
+            *ngIf="
+              emailFormControl.hasError('email') &&
+              !emailFormControl.hasError('required')
+            "
+          >
             Please enter a email
           </mat-error>
 
           <mat-error *ngIf="emailFormControl.hasError('required')">
             login is
 
-            <strong>
-              required
-            </strong>
+            <strong> required </strong>
           </mat-error>
         </mat-form-field>
 
         <mat-form-field class="form-full-width" appearance="fill">
-          <mat-label>
-            Password
-          </mat-label>
-          <input class="ms-mat-input-color" type="password" matInput [formControl]="passwordFormControl" placeholder="password">
+          <mat-label> Password </mat-label>
+          <input
+            class="ms-mat-input-color"
+            type="password"
+            matInput
+            [formControl]="passwordFormControl"
+            placeholder="password"
+          />
 
-          <mat-error *ngIf="passwordFormControl.hasError('email') && !passwordFormControl.hasError('required')">
+          <mat-error
+            *ngIf="
+              passwordFormControl.hasError('email') &&
+              !passwordFormControl.hasError('required')
+            "
+          >
             Please enter a valid password
           </mat-error>
           <mat-error *ngIf="passwordFormControl.hasError('required')">
             password is
 
-            <strong>
-              required
-            </strong>
+            <strong> required </strong>
           </mat-error>
         </mat-form-field>
 
+        <mat-checkbox (change)="onStayLoggedInChange($event)"> Stay logged in </mat-checkbox>
         <button
-         type="submit"
-         [disabled]="!emailFormControl.valid || !passwordFormControl.valid"
-         class="log-in-button ms-mt-1"
-         mat-raised-button color="primary">
+          type="submit"
+          [disabled]="!emailFormControl.valid || !passwordFormControl.valid"
+          class="log-in-button ms-mt-1"
+          mat-raised-button
+          color="primary"
+        >
           Log in
         </button>
       </form>
