@@ -1,0 +1,98 @@
+<section class="search-filters-container">
+  <div class="search-filters-header">
+    Search filters
+  </div>
+
+  <div class="search-filters-options ms-py-1">
+    <div class="search-filters-option ms-mt-1">
+      <span>Price</span>
+
+      <div class="search-inputs-container">
+        <input class="ms-input" placeholder="min">
+        <input class="ms-input" placeholder="max">
+      </div>
+
+    </div>
+
+    <div class="search-filters-option ms-mt-1">
+      <span>Localization</span>
+
+      <div class="search-inputs-container">
+        <input class="ms-input" placeholder="min">
+        <input class="ms-input" placeholder="max">
+      </div>
+    </div>
+
+    <div class="search-filters-option ms-mt-1">
+      <span>Buying format</span>
+      <!-- TODO: create ngFor for those filters -->
+      <div class="search-radio-inputs-container">
+        <div class="radio-input">
+          <input type="radio" id="allListings">
+
+          <label for="allListings">
+            <span>
+              All Listings
+            </span>
+
+            <span>
+              (0)
+            </span>
+          </label>
+        </div>
+
+        <div class="radio-input">
+          <input type="radio" id="acceptOffers">
+
+          <label for="acceptOffers">
+            <span>
+              Accept Offers
+            </span>
+
+            <span>
+              (0)
+            </span>
+          </label>
+        </div>
+
+        <div class="radio-input">
+          <input type="radio" id="auctions">
+
+          <label for="auctions">
+            <span>
+              Auction
+            </span>
+
+            <span>
+              (0)
+            </span>
+          </label>
+        </div>
+
+        <div class="radio-input">
+          <input type="radio" id="buyItNow">
+
+          <label for="buyItNow">
+           <span>
+            Buy it now
+          </span>
+
+            <span>
+              (0)
+            </span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="search-filters-buttons-container ms-mt-1">
+      <button class="ms-danger-button">
+        Clear search filters
+      </button>
+
+      <button class="ms-search-button">
+        Search
+      </button>
+    </div>
+  </div>
+</section>

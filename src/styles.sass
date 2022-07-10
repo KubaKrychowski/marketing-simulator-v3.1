@@ -31,6 +31,9 @@ h3
 hr
   border-color: #dfdfdf
 
+mat-tab-group
+  font-family: 'Oswald', sans-serif !important
+
 .ms-page-container
   height: 80vh
   padding: 1em
@@ -46,9 +49,22 @@ hr
 .ms-mt-2
   margin-top: 2em
 
+.ms-mt-5
+  margin-top: 5em !important
+
+.ms-ml-1
+  margin-left: 1em !important
+
+.ms-ml-2
+  margin-left: 2em !important
+
 .ms-py-4
   padding-left: 4em
   padding-right: 4em
+
+.ms-py-1
+  padding-left: 1em
+  padding-right: 1em
 
 .ms-py-0
   padding-top: 0 !important
@@ -85,6 +101,47 @@ hr
   &:hover
     cursor: pointer
 
+.ms-list-container
+  border-top-left-radius: 10px
+  border-top-right-radius: 10px
+  display: flex
+  flex-direction: row
+  height: 80%
+  -webkit-box-shadow: -8px 8px 29px 0px rgba(229, 229, 229, 1)
+  -moz-box-shadow: -8px 8px 29px 0px rgba(229, 229, 229, 1)
+  box-shadow: -8px 8px 29px 0px rgba(229, 229, 229, 1)
+
+.ms-list
+  padding: 0
+  margin: 0
+  list-style: none
+  width: 100%
+
+hr
+  margin: 0
+  border: 1px solid rgb(235, 235, 235)
+
+  &>li
+    display: flex
+    flex-direction: row
+    align-items: center
+    justify-content: center
+
+  &-header
+    background-color: #804898
+    color: white
+    height: 2.5em
+    align-self: center
+
+  &-cell
+    text-align: center
+    height: 2em
+
+    color: rgb(60, 60, 60)
+
+  &-cell:last-child
+    border-bottom: 1px solid #a062ba
+
 .ms-search-button
   display: flex
   width: 25%
@@ -93,6 +150,20 @@ hr
   background-color: #a062ba
   color: white
   border-radius: 4px
+  align-items: center
+  justify-content: center
+  column-gap: 1em
+  border: 0
+
+.ms-danger-button
+  display: flex
+  width: 50%
+  height: 3em
+  align-self: flex-end
+  background-color: $red-color
+  color: white
+  border-radius: 4px
+  border: 0
   align-items: center
   justify-content: center
   column-gap: 1em
@@ -122,17 +193,15 @@ hr
     .ms-required-status
       color: rgb(245, 59, 59)
 
-  .ms-input
-    border: 1px solid gray
-    color: gray
-    padding: 1%
-    height: 2em
-    border-radius: 4px
-
-  //TODO: WHICH PSEUDO CLASS IS APPLIED TO INPUT AFTER CLICK????
+.ms-input
+  border: 1px solid gray
+  color: gray
+  padding: 1%
+  height: 2em
+  border-radius: 4px
 
   &:focus
-    border: 1px solid purple
+    order: 1px solid purple
 
 .ms-input-field-adress
   display: flex
@@ -159,8 +228,6 @@ hr
       padding: 5px
       height: 2em
       border-radius: 4px
-
-    //TODO: WHICH PSEUDO CLASS IS APPLIED TO INPUT AFTER CLICK????
 
   &:focus
     border: 1px solid purple

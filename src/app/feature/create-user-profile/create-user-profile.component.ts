@@ -45,7 +45,7 @@ export class CreateUserProfileComponent implements OnInit {
 
   ngOnInit(): void {
     let loader = new Loader({
-      apiKey: "AIzaSyCYqXihdiQaWiw7BIgvpdu4seFMGGJz_Qw",
+      apiKey: "",
       version: "weekly"
     })
 

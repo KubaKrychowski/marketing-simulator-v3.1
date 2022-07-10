@@ -1,0 +1,67 @@
+<div class="dialog-container">
+  <div class="dialog-header-container">
+    <h1 class="dialog-header">User Informations</h1>
+
+    <div class="edit-user-menu">
+      <u (click)="toggleEditMode()">Edit user </u>
+    </div>
+  </div>
+
+  <hr />
+
+  <div mat-dialog-content>
+    <section class="user-informations-content">
+      <mat-tab-group animationDuration="0ms">
+        <mat-tab label="Basic informations">
+          <article class="basic-informations ms-mt-2">
+            <div class="user-data">
+              <span class="user-data-title"> Username: </span>
+              <!-- TODO: Rework it as reactive form -->
+              <input
+                class="ms-input"
+                *ngIf="editMode"
+                [value]="user.username"
+                formControlName="newUsername"
+              />
+              <p *ngIf="!editMode">{{user.username}}</p>
+            </div>
+
+            <div class="user-data">
+              <span class="user-data-title">Email:</span>
+              <input formControlName="newEmail" class="ms-input" *ngIf="editMode" [value]="user.email" />
+              <p *ngIf="!editMode">{{user.email}}</p>
+            </div>
+
+            <div class="user-data">
+              <span class="user-data-title">External ID:</span>
+              <u *ngIf="editMode">Generate new External ID</u>
+              {{user.externalId}}
+            </div>
+
+            <div class="user-data">
+              <span class="user-data-title"> Is active:</span>
+              {{user.isActive === null? 'false': user.isActive}}
+            </div>
+
+            <div class="user-data">
+              <span class="user-data-title">Money:</span>
+              <input class="ms-input" *ngIf="editMode" [value]="" />
+              <p>
+                <span *ngIf="!editMode">XXXXXXXXXXXX </span>
+              </p>
+              PLN
+            </div>
+          </article>
+
+          <div class="buttons-container">
+            <button class="ms-button-danger">Cancel</button>
+
+            <button class="ms-button-success ms-ml-1">Save Changes</button>
+          </div>
+        </mat-tab>
+        <mat-tab label="Company details"> </mat-tab>
+        <mat-tab label="Settings"> </mat-tab>
+      </mat-tab-group>
+    </section>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+<header class="users-management-header">Users management</header>
+
+<hr />
+
+<section class="users-management-container ms-mt-1">
+  <article class="users-listing">
+    <div class="categories">
+      <div class="category-id">Id</div>
+
+      <div class="category-username">Username</div>
+
+      <div class="category-email">email</div>
+    </div>
+
+    <div class="search-results ms-mt-2">
+      <app-users-management-user-item
+        class="search-results-item ms-mt-1"
+        *ngFor="let user of users"
+        [user]="user"
+      ></app-users-management-user-item>
+    </div>
+  </article>
+</section>

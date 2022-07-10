@@ -33,7 +33,7 @@ export class LogInComponent {
         for (const [key, value] of Object.entries(res)) {
           if (key === "token") {
             this.apiService.setApiToken(value);
-            this.userService.initializeUser('kkrychowski@interia.pl');
+            this.userService.initializeUser(this.emailFormControl.value);
             this.router.navigate(['/start']);
           }
         }
@@ -45,5 +45,9 @@ export class LogInComponent {
   private resetForm() {
     this.emailFormControl.reset();
     this.passwordFormControl.reset();
+  }
+  //TODO: Add Stay logged in option
+  onStayLoggedInChange(event: any) {
+    console.log(event);
   }
 }

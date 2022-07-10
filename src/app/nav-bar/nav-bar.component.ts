@@ -4,19 +4,16 @@ import { UserService } from '../services/user/user.service';
 @Component({
   selector: 'app-nav-bar',
   templateUrl: './nav-bar.component.html',
-  styleUrls: ['./nav-bar.component.sass']
+  styleUrls: ['./nav-bar.component.sass'],
 })
 export class NavBarComponent implements OnInit {
+  constructor(private router: Router, public userService: UserService) {}
 
-  constructor(private router: Router,public userService: UserService) { }
-
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   goToStartPage(): void {
     this.router.navigate(['/start']);
   }
-
 
   goToUserProfileCreator(): void {
     this.router.navigate(['/start/create-user-profile']);
@@ -33,6 +30,12 @@ export class NavBarComponent implements OnInit {
   goToRegisterPage(): void {
     this.router.navigate(['/auth/register']);
   }
+
+  goToMarketPage(): void {
+    this.router.navigate(['/market/results']);
+  }
+
+  goToAdminPanel(): void {
+    this.router.navigate(['/admin-panel']);
+  }
 }
-
-
