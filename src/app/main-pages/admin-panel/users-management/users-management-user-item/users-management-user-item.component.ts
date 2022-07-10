@@ -1,3 +1,4 @@
+import { UserService } from 'src/app/services/user/user.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, Input, OnInit, Inject } from '@angular/core';
 import {
@@ -5,6 +6,7 @@ import {
   MatDialogRef,
   MatDialog,
 } from '@angular/material/dialog';
+import { User } from 'src/app/shared/models/user.model';
 
 @Component({
   selector: 'app-users-management-user-item',
@@ -40,6 +42,7 @@ export class UsersManagementUserItemComponent implements OnInit {
 export class DialogOverviewExampleDialog {
   constructor(
     public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
+    private userService: UserService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 
@@ -52,6 +55,7 @@ export class DialogOverviewExampleDialog {
   ]);
   newExternalId = new FormControl(null, Validators.required);
   newEmail = new FormControl(null, [Validators.email, Validators.required]);
+  newBalance = new FormControl(null, [Validators.required]);
 
   ngOnInit(): void {
     for (const [key, value] of Object.entries(this.data)) {
@@ -63,7 +67,14 @@ export class DialogOverviewExampleDialog {
     this.editMode = !this.editMode;
   }
 
-  updateUserDate() {
-
+  updateUserData() {
+    if(this.newExternalId.valid && this.newEmail.valid && this.newBalance.valid){
+      const userDto: User = {
+        externalId: this.newExternalId.value,
+        email: this.newEmail.value,
+        money: this.newBalance.value
+      }
+      this.userService.updateUserData(userDto);
+    }
   }
 }
