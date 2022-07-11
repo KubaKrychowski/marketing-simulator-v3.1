@@ -1,9 +1,33 @@
-<header>
-  Market management
-</header>
+<mat-tab-group>
+  <mat-tab label="products">
+    <ng-container *ngTemplateOutlet="products"></ng-container>
+
+  </mat-tab>
+  <mat-tab label="stocks"></mat-tab>
+  <mat-tab label="private markets"></mat-tab>
+</mat-tab-group>
+
+
 
 <section class="market-management-container">
   <article>
-    
+
   </article>
 </section>
+
+<ng-template #products>
+  <section class="products-container">
+    <div class="search-bar">
+      <mat-form-field class="ms-input-field" appearance="fill">
+        <mat-label class="ms-input-label">Search product</mat-label>
+        <input class="ms-input" matInput>
+      </mat-form-field>
+    </div>
+    <article class="products-listing">
+      <h2>Products:</h2>
+      <div class="market-product-item" *ngFor="let product of products">
+        <app-market-product-item [product]="product"></app-market-product-item>
+      </div>
+    </article>
+  </section>
+</ng-template>

@@ -26,6 +26,7 @@ import { UsersManagementComponent } from './main-pages/admin-panel/users-managem
 import { CompaniesManagementComponent } from './main-pages/admin-panel/companies-management/companies-management.component';
 import { MarketManagementComponent } from './main-pages/admin-panel/market-management/market-management.component';
 import { UsersManagementUserItemComponent, DialogOverviewExampleDialog } from './main-pages/admin-panel/users-management/users-management-user-item/users-management-user-item.component';
+import { MarketProductItemComponent } from './main-pages/admin-panel/market-management/market-product-item/market-product-item.component';
 
 @NgModule({
   imports: [
@@ -55,7 +56,8 @@ import { UsersManagementUserItemComponent, DialogOverviewExampleDialog } from '.
     CompaniesManagementComponent,
     MarketManagementComponent,
     UsersManagementUserItemComponent,
-    DialogOverviewExampleDialog
+    DialogOverviewExampleDialog,
+    MarketProductItemComponent
   ],
 
   bootstrap: [AppComponent],

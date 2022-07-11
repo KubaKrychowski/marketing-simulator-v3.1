@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./market-management.component.sass']
 })
 export class MarketManagementComponent implements OnInit {
+  products: any = null;
 
   constructor() { }
 
