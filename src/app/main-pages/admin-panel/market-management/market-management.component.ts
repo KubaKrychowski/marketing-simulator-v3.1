@@ -7,10 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MarketManagementComponent implements OnInit {
   products: any = null;
-
+  isAddProductCardVisible: boolean = false;
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  toggleAddProductCard(): void {
+    this.isAddProductCardVisible = !this.isAddProductCardVisible;
+  }
 }
