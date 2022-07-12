@@ -1,1 +1,49 @@
-<p>add-product-card works!</p>
+<section class="add-product-card-container">
+  <header><h2 class="ms-m-0">Add product</h2></header>
+  <hr />
+  <article>
+    <form [formGroup]="" class="example-form" #form (ngSubmit)="onSubmit()">
+      <div class="forms-row">
+        <div class="form-field">
+          <mat-form-field class="form-full-width">
+            <mat-label> Product name </mat-label>
+            <input
+              formControlName=""
+              type="text"
+              matInput
+              placeholder="name of new product"
+            />
+          </mat-form-field>
+
+          <span class="ms-text-error" *ngIf="false">
+            Product already exist
+          </span>
+        </div>
+
+        <mat-form-field class="form-full-width">
+          <mat-label> Price </mat-label>
+
+          <input
+            formControlName="confirmEmail"
+            type="text"
+            matInput
+            placeholder="email"
+          />
+
+          <mat-error *ngIf="false"> Wrong price </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <button
+          type="submit"
+          [disabled]="false"
+          mat-raised-button
+          color="primary"
+        >
+          Create product
+        </button>
+      </div>
+    </form>
+  </article>
+</section>

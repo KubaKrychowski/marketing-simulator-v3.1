@@ -12,4 +12,7 @@ export class AddProductCardComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onSubmit(): void{
+
+  }
 }
