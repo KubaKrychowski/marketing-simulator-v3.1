@@ -2,17 +2,26 @@
   <header><h2 class="ms-m-0">Add product</h2></header>
   <hr />
   <article>
-    <form [formGroup]="" class="example-form" #form (ngSubmit)="onSubmit()">
+    <form
+      [formGroup]="addProductForm"
+      class="example-form"
+      #form
+      (ngSubmit)="onSubmit()"
+    >
       <div class="forms-row">
         <div class="form-field">
           <mat-form-field class="form-full-width">
             <mat-label> Product name </mat-label>
             <input
-              formControlName=""
+              formControlName="name"
               type="text"
               matInput
               placeholder="name of new product"
             />
+
+            <mat-error *ngIf="!addProductForm.controls['name'].valid">
+              Wrong name
+            </mat-error>
           </mat-form-field>
 
           <span class="ms-text-error" *ngIf="false">
@@ -24,20 +33,25 @@
           <mat-label> Price </mat-label>
 
           <input
-            formControlName="confirmEmail"
-            type="text"
+            formControlName="price"
+            type="number"
             matInput
-            placeholder="email"
+            placeholder="Price per item"
           />
 
-          <mat-error *ngIf="false"> Wrong price </mat-error>
+          <mat-error *ngIf="!addProductForm.controls['price'].valid">
+            Wrong price
+          </mat-error>
         </mat-form-field>
       </div>
 
       <div>
         <button
           type="submit"
-          [disabled]="false"
+          [disabled]="
+            !addProductForm.controls['price'].valid ||
+            !addProductForm.controls['name'].valid
+          "
           mat-raised-button
           color="primary"
         >
