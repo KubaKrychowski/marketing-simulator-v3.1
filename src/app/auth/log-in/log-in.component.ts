@@ -33,7 +33,8 @@ export class LogInComponent {
         for (const [key, value] of Object.entries(res)) {
           if (key === "token") {
             this.apiService.setApiToken(value);
-            this.userService.initializeUser('kkrychowski@interia.pl');
+            //set email in empty string
+            this.userService.initializeUser('');
             this.router.navigate(['/start']);
           }
         }
